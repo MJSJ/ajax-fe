@@ -7,17 +7,84 @@
     <title>Document</title>
 </head>
 <body>
+    <button class="score">post score</button>
+    <button class="login">login</button>
+    <button class="logout">logout</button>
+    <button class="doSomething">doSomething</button>
+    <p>打开控制台看输出</p>
     <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
-        $.ajax({
-            url:"http://localhost:3000/score",
-            method:"POST",
-            data:JSON.stringify({userId:100001,num:"8437"}),
-            dataType:'json',
-            contentType:"application/json;charset=UTF-8"
-        }).then(function(data){
-            console.log(data)
+        
+
+        function postScore(){
+            $.ajax({
+                url:"http://localhost:3000/score",
+                method:"POST",
+                data:JSON.stringify({userId:100001,num:"8437"}),
+                dataType:'json',
+                contentType:"application/json;charset=UTF-8"
+            }).then(function(data){
+                console.log(data)
+            })
+        }
+        
+        function login(){
+            $.ajax({
+                url:"http://localhost:3000/login",
+                method:"POST",
+                // data:JSON.stringify({username:"juan-manuel@fangio.com",password:"aa"}),//错误密码
+                data:JSON.stringify({username:"juan-manuel@fangio.com",password:"aaa"}),//正确密码
+                dataType:'json',
+                xhrFields: {
+                    withCredentials: true
+                },
+                contentType:"application/json;charset=UTF-8"
+            }).then(function(data){
+                console.log(data)
+            })
+        }
+
+        function logout(){
+            $.ajax({
+                url:"http://localhost:3000/logout",
+                method:"GET",
+                dataType:'json',
+                xhrFields: {
+                    withCredentials: true
+                },
+                contentType:"application/json;charset=UTF-8"
+            }).then(function(data){
+                console.log(data)
+            })
+        }
+
+        function doSomething(){
+            $.ajax({
+                url:"http://localhost:3000/doSomething",
+                method:"GET",
+                dataType:'json',
+                xhrFields: {
+                    withCredentials: true
+                },
+                contentType:"application/json;charset=UTF-8"
+            }).then(function(data){
+                console.log(data)
+            })
+        }
+
+        $(".score").on("click",function(){
+            postScore();
         })
+        $(".login").on("click",function(){
+            login();
+        })
+        $(".logout").on("click",function(){
+            logout();
+        })
+        $(".doSomething").on("click",function(){
+            doSomething();
+        })
+        
     </script>
 </body>
 </html>
