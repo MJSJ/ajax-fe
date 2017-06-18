@@ -9,6 +9,7 @@
 <body>
     <button class="score">post score</button>
     <button class="getScore">get score</button>
+    <button class="getTopScore">getTopScore</button>
     <button class="getLatestScore">getLatestScore</button>
     <button class="login">login</button>
     <button class="logout">logout</button>
@@ -42,6 +43,17 @@
                 xhrFields: {
                     withCredentials: true
                 }
+            }).then(function(data){
+                console.log(data)
+            })
+        }
+
+        function getTopScore(){
+            $.ajax({
+                url:"http://localhost:3000/score/top",
+                method:"GET",
+                dataType:'json',
+                contentType:"application/json;charset=UTF-8"
             }).then(function(data){
                 console.log(data)
             })
@@ -127,6 +139,12 @@
         $(".getLatestScore").on("click",function(){
             getLatestScore();
         })
+
+        $(".getTopScore").on("click",function(){
+            getTopScore();
+        })
+
+        
         
     </script>
 </body>
