@@ -8,6 +8,8 @@
 </head>
 <body>
     <button class="score">post score</button>
+    <button class="getScore">get score</button>
+    <button class="getLatestScore">getLatestScore</button>
     <button class="login">login</button>
     <button class="logout">logout</button>
     <button class="doSomething">doSomething</button>
@@ -22,7 +24,42 @@
                 method:"POST",
                 data:JSON.stringify({userId:100001,num:"8437"}),
                 dataType:'json',
+                xhrFields: {
+                    withCredentials: true
+                },
                 contentType:"application/json;charset=UTF-8"
+            }).then(function(data){
+                console.log(data)
+            })
+        }
+
+        function getScore(){
+            $.ajax({
+                url:"http://localhost:3000/score",
+                method:"GET",
+                dataType:'json',
+                contentType:"application/json;charset=UTF-8",
+                xhrFields: {
+                    withCredentials: true
+                }
+            }).then(function(data){
+                console.log(data)
+            })
+        }
+
+        function getLatestScore(){
+            $.ajax({
+                url:"http://localhost:3000/latestScore",
+                method:"GET",
+                dataType:'json',
+                data:{
+                    num:2
+                    // num:1
+                },
+                contentType:"application/json;charset=UTF-8",
+                xhrFields: {
+                    withCredentials: true
+                }
             }).then(function(data){
                 console.log(data)
             })
@@ -83,6 +120,12 @@
         })
         $(".doSomething").on("click",function(){
             doSomething();
+        })
+        $(".getScore").on("click",function(){
+            getScore();
+        })
+        $(".getLatestScore").on("click",function(){
+            getLatestScore();
         })
         
     </script>
