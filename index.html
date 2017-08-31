@@ -15,6 +15,8 @@
     <button class="logout">logout</button>
     <button class="doSomething">doSomething</button>
     <button class="getList">getList</button>
+    <button class="fetchSubject">fetchSubject</button>
+    <button class="deleteSubject">deleteSubject</button>
     <p>打开控制台看输出</p>
     <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
@@ -122,6 +124,36 @@
             })
         }
 
+        function fetchSubject(){
+            $.ajax({
+                url:"http://localhost:8081/cms/fetchSubject",
+                data:{subjectID:100001},
+                method:"GET",
+                dataType:'json',
+                xhrFields: {
+                    withCredentials: true
+                },
+                contentType:"application/json;charset=UTF-8"
+            }).then(function(data){
+                console.log(data)
+            })
+        }
+
+        function deleteSubject(){
+            $.ajax({
+                url:"http://localhost:8081/cms/deleteSubject",
+                data:JSON.stringify({subjectID:100001}),
+                method:"post",
+                dataType:'json',
+                xhrFields: {
+                    withCredentials: true
+                },
+                contentType:"application/json;charset=UTF-8"
+            }).then(function(data){
+                console.log(data)
+            })
+        }
+
         function doSomething(){
             $.ajax({
                 url:"http://localhost:8081/doSomething",
@@ -162,7 +194,14 @@
         $(".getList").on("click",function(){
             getList();
         })
+
+        $(".fetchSubject").on("click",function(){
+            fetchSubject();
+        })
         
+        $(".deleteSubject").on("click",function(){
+            deleteSubject();
+        })
     </script>
 </body>
 </html>
