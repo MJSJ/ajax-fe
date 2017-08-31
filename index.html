@@ -14,6 +14,7 @@
     <button class="login">login</button>
     <button class="logout">logout</button>
     <button class="doSomething">doSomething</button>
+    <button class="getList">getList</button>
     <p>打开控制台看输出</p>
     <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
@@ -21,7 +22,7 @@
 
         function postScore(){
             $.ajax({
-                url:"http://localhost:3000/score",
+                url:"http://localhost:8081/score",
                 method:"POST",
                 data:JSON.stringify({userId:100001,num:"8437"}),
                 dataType:'json',
@@ -36,7 +37,7 @@
 
         function getScore(){
             $.ajax({
-                url:"http://localhost:3000/score",
+                url:"http://localhost:8081/score",
                 method:"GET",
                 dataType:'json',
                 contentType:"application/json;charset=UTF-8",
@@ -50,7 +51,7 @@
 
         function getTopScore(){
             $.ajax({
-                url:"http://localhost:3000/score/top",
+                url:"http://localhost:8081/score/top",
                 method:"GET",
                 dataType:'json',
                 contentType:"application/json;charset=UTF-8"
@@ -61,7 +62,7 @@
 
         function getLatestScore(){
             $.ajax({
-                url:"http://localhost:3000/latestScore",
+                url:"http://localhost:8081/latestScore",
                 method:"GET",
                 dataType:'json',
                 data:{
@@ -79,10 +80,10 @@
         
         function login(){
             $.ajax({
-                url:"http://localhost:3000/login",
+                url:"http://localhost:8081/login",
                 method:"POST",
                 // data:JSON.stringify({username:"juan-manuel@fangio.com",password:"aa"}),//错误密码
-                data:JSON.stringify({username:"juan-manuel@fangio.com",password:"aaa"}),//正确密码
+                data:JSON.stringify({username:"yursile@hamilton.com",password:"ddd"}),//正确密码
                 dataType:'json',
                 xhrFields: {
                     withCredentials: true
@@ -95,7 +96,21 @@
 
         function logout(){
             $.ajax({
-                url:"http://localhost:3000/logout",
+                url:"http://localhost:8081/logout",
+                method:"GET",
+                dataType:'json',
+                xhrFields: {
+                    withCredentials: true
+                },
+                contentType:"application/json;charset=UTF-8"
+            }).then(function(data){
+                console.log(data)
+            })
+        }
+
+        function getList(){
+            $.ajax({
+                url:"http://localhost:8081/fetchSubjectList",
                 method:"GET",
                 dataType:'json',
                 xhrFields: {
@@ -109,7 +124,7 @@
 
         function doSomething(){
             $.ajax({
-                url:"http://localhost:3000/doSomething",
+                url:"http://localhost:8081/doSomething",
                 method:"GET",
                 dataType:'json',
                 xhrFields: {
@@ -144,7 +159,9 @@
             getTopScore();
         })
 
-        
+        $(".getList").on("click",function(){
+            getList();
+        })
         
     </script>
 </body>
