@@ -80,7 +80,7 @@
         
         function login(){
             $.ajax({
-                url:"http://localhost:8081/login",
+                url:"http://localhost:8081/cms/login",
                 method:"POST",
                 // data:JSON.stringify({username:"juan-manuel@fangio.com",password:"aa"}),//错误密码
                 data:JSON.stringify({username:"yursile@hamilton.com",password:"ddd"}),//正确密码
@@ -110,7 +110,7 @@
 
         function getList(){
             $.ajax({
-                url:"http://localhost:8081/fetchSubjectList",
+                url:"http://localhost:8081/cms/fetchSubjectList",
                 method:"GET",
                 dataType:'json',
                 xhrFields: {
