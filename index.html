@@ -17,6 +17,8 @@
     <button class="getList">getList</button>
     <button class="fetchSubject">fetchSubject</button>
     <button class="deleteSubject">deleteSubject</button>
+    <button class="addSubject">addSubject</button>
+    <button class="updateSubject">updateSubject</button>
     <p>打开控制台看输出</p>
     <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
@@ -154,6 +156,45 @@
             })
         }
 
+        function addSubject(){
+            $.ajax({
+                url:"http://localhost:8081/cms/updateSubject",
+                data:JSON.stringify({
+                    subjectName:"J2版本",
+                    content:"J2内容",
+                    tag:"J2tag"
+                }),
+                method:"POST",
+                dataType:'json',
+                xhrFields: {
+                    withCredentials: true
+                },
+                contentType:"application/json;charset=UTF-8"
+            }).then(function(data){
+                console.log(data)
+            })
+        }
+
+        function updateSubject(){
+            $.ajax({
+                url:"http://localhost:8081/cms/updateSubject",
+                data:JSON.stringify({
+                    subjectID:100004,
+                    content:"MP内容新加的",
+                    tag:"MPtag"
+                }),
+                method:"POST",
+                dataType:'json',
+                xhrFields: {
+                    withCredentials: true
+                },
+                contentType:"application/json;charset=UTF-8"
+            }).then(function(data){
+                console.log(data)
+            })
+        }
+        
+
         function doSomething(){
             $.ajax({
                 url:"http://localhost:8081/doSomething",
@@ -201,6 +242,13 @@
         
         $(".deleteSubject").on("click",function(){
             deleteSubject();
+        })
+
+        $(".addSubject").on("click",function(){
+            addSubject();
+        })
+        $(".updateSubject").on("click",function(){
+            updateSubject();
         })
     </script>
 </body>
